@@ -6,8 +6,9 @@ import { useState, useTransition } from 'react'
 import { login } from '@/app/auth/actions'
 import { useSearchParams } from 'next/navigation'
 import ThemeToggle from '@/components/ThemeToggle'
+import { Suspense } from 'react'
 
-export default function LoginPage() {
+function LoginContent() {
     const searchParams = useSearchParams()
     const errorParam = searchParams.get('error')
 
@@ -140,5 +141,13 @@ export default function LoginPage() {
                 </div>
             </footer>
         </div>
+    )
+}
+
+export default function LoginPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <LoginContent />
+        </Suspense>
     )
 }

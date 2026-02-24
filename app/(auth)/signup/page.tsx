@@ -6,8 +6,9 @@ import { useState, useTransition } from 'react'
 import { signup } from '@/app/auth/actions'
 import { useSearchParams } from 'next/navigation'
 import ThemeToggle from '@/components/ThemeToggle'
+import { Suspense } from 'react'
 
-export default function SignupPage() {
+function SignupContent() {
     const searchParams = useSearchParams()
     const errorParam = searchParams.get('error')
     const messageParam = searchParams.get('message')
@@ -149,5 +150,13 @@ export default function SignupPage() {
                 </div>
             </footer>
         </div>
+    )
+}
+
+export default function SignupPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SignupContent />
+        </Suspense>
     )
 }

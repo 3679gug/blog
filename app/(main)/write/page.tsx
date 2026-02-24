@@ -11,10 +11,12 @@ export default async function WritePage() {
         redirect('/login')
     }
 
-    const { data: categories = [] } = await supabase
+    const { data: categoriesData } = await supabase
         .from('categories')
         .select('*')
         .order('name')
+
+    const categories = categoriesData || []
 
     return (
         <div className="container" style={{ padding: '3rem 1.5rem', maxWidth: '1000px' }}>
