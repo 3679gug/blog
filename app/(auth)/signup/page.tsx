@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Mail, Lock, Github, Chrome, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { useState, useTransition } from 'react'
-import { signup, signInWithOAuth } from '@/app/auth/actions'
+import { signup } from '@/app/auth/actions'
 import { useSearchParams } from 'next/navigation'
 import ThemeToggle from '@/components/ThemeToggle'
 import { Suspense } from 'react'
@@ -109,43 +109,7 @@ function SignupContent() {
                             </button>
                         </form>
 
-                        <div className="relative my-8">
-                            <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-[var(--card-border)]"></div>
-                            </div>
-                            <div className="relative flex justify-center text-sm">
-                                <span className="bg-[var(--card-bg)] px-2 text-[var(--muted)]">또는 다음으로 계속하기</span>
-                            </div>
-                        </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <button
-                                onClick={() => {
-                                    startTransition(async () => {
-                                        await signInWithOAuth('google')
-                                    })
-                                }}
-                                disabled={isPending}
-                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98] disabled:opacity-50"
-                                type="button"
-                            >
-                                <Chrome className="w-5 h-5" />
-                                <span>Google</span>
-                            </button>
-                            <button
-                                onClick={() => {
-                                    startTransition(async () => {
-                                        await signInWithOAuth('github')
-                                    })
-                                }}
-                                disabled={isPending}
-                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98] disabled:opacity-50"
-                                type="button"
-                            >
-                                <Github className="w-5 h-5" />
-                                <span>GitHub</span>
-                            </button>
-                        </div>
 
                         <div className="text-center text-sm text-[var(--muted)] pt-2">
                             이미 계정이 있으신가요?{' '}
