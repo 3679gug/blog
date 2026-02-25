@@ -21,7 +21,7 @@ export default async function WritePage() {
     return (
         <div className="container" style={{ padding: '3rem 1.5rem', maxWidth: '1000px' }}>
             <h1 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem', fontFamily: 'Outfit' }}>새 글 작성하기</h1>
-            <WriteForm categories={categories} user={user} />
+            <WriteForm categories={categories} />
         </div>
     )
 }
