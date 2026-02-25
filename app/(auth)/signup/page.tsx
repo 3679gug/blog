@@ -122,16 +122,26 @@ function SignupContent() {
 
                         <div className="grid grid-cols-2 gap-4">
                             <button
-                                onClick={() => signInWithOAuth('google')}
-                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]"
+                                onClick={() => {
+                                    startTransition(async () => {
+                                        await signInWithOAuth('google')
+                                    })
+                                }}
+                                disabled={isPending}
+                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98] disabled:opacity-50"
                                 type="button"
                             >
                                 <Chrome className="w-5 h-5" />
                                 <span>Google</span>
                             </button>
                             <button
-                                onClick={() => signInWithOAuth('github')}
-                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]"
+                                onClick={() => {
+                                    startTransition(async () => {
+                                        await signInWithOAuth('github')
+                                    })
+                                }}
+                                disabled={isPending}
+                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98] disabled:opacity-50"
                                 type="button"
                             >
                                 <Github className="w-5 h-5" />
