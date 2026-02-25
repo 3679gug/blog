@@ -17,7 +17,7 @@ interface WriteFormProps {
     user: User
 }
 
-export default function WriteForm({ categories, user }: WriteFormProps) {
+export default function WriteForm({ categories }: { categories: Category[] }) {
     const router = useRouter()
     const [isPending, startTransition] = useTransition()
     const [title, setTitle] = useState('')
@@ -43,7 +43,8 @@ export default function WriteForm({ categories, user }: WriteFormProps) {
         startTransition(async () => {
             try {
                 await createPost(formData)
-            } catch (error: any) {
+            } catch (err: unknown) {
+                const error = err as Error
                 console.error('Error publishing post:', error)
                 alert('발행 중 오류가 발생했습니다: ' + error.message)
             }

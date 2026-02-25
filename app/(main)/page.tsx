@@ -14,7 +14,16 @@ export default async function Home({
   const supabase = await createClient()
 
   let categories: { id: number; name: string; slug: string }[] = []
-  let posts: any[] = []
+  let posts: {
+    id: number;
+    title: string;
+    subtitle: string;
+    thumbnail_url: string;
+    slug: string;
+    published_at: string;
+    read_time_minutes: number;
+    category: { name: string }
+  }[] = []
   let totalResults = 0
 
   try {
@@ -44,12 +53,13 @@ export default async function Home({
 
     posts = postsData || []
     totalResults = count || 0
-  } catch (err: any) {
-    console.error('SERVER ERROR:', err)
+  } catch (err: unknown) {
+    const error = err as Error
+    console.error('SERVER ERROR:', error)
     return (
       <div className="container" style={{ paddingTop: '8rem', textAlign: 'center' }}>
         <h1 style={{ color: 'red' }}>에러 발생</h1>
-        <p>{err.message || '알 수 없는 서버 오류'}</p>
+        <p>{error.message || '알 수 없는 서버 오류'}</p>
         <pre style={{ textAlign: 'left', background: '#f5f5f5', padding: '1rem', marginTop: '1rem', overflowX: 'auto' }}>
           {JSON.stringify(err, null, 2)}
         </pre>
