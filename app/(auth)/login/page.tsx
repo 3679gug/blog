@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Mail, Lock, Github, Chrome, Loader2 } from 'lucide-react'
 import { useState, useTransition } from 'react'
-import { login } from '@/app/auth/actions'
+import { login, signInWithOAuth } from '@/app/auth/actions'
 import { useSearchParams } from 'next/navigation'
 import ThemeToggle from '@/components/ThemeToggle'
 import { Suspense } from 'react'
@@ -112,11 +112,19 @@ function LoginContent() {
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <button className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]" type="button">
+                            <button
+                                onClick={() => signInWithOAuth('google')}
+                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]"
+                                type="button"
+                            >
                                 <Chrome className="w-5 h-5" />
                                 <span>Google</span>
                             </button>
-                            <button className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]" type="button">
+                            <button
+                                onClick={() => signInWithOAuth('github')}
+                                className="flex items-center justify-center gap-3 bg-[var(--input-bg)] border border-[var(--input-border)] py-3.5 rounded-2xl hover:bg-[var(--card-border)] transition-all text-sm font-semibold text-[var(--foreground)] active:scale-[0.98]"
+                                type="button"
+                            >
                                 <Github className="w-5 h-5" />
                                 <span>GitHub</span>
                             </button>

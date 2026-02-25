@@ -9,16 +9,19 @@ export async function login(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
+    console.log('Attempting login for:', email)
+
     const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
     })
 
     if (error) {
+        console.error('Login error:', error.message)
         redirect(`/login?error=${encodeURIComponent(error.message)}`)
     }
 
-    redirect('/')
+    return redirect('/')
 }
 
 export async function signup(formData: FormData) {
@@ -27,16 +30,41 @@ export async function signup(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
+    console.log('Attempting signup for:', email)
+
     const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        },
     })
 
     if (error) {
+        console.error('Signup error:', error.message)
         redirect(`/signup?error=${encodeURIComponent(error.message)}`)
     }
 
-    redirect('/signup?message=Check your email to confirm your account.')
+    redirect('/signup?message=가입 확인 메일을 보냈습니다. 이메일을 확인해 주세요.')
+}
+
+export async function signInWithOAuth(provider: 'google' | 'github') {
+    const supabase = await createClient()
+    const { data, error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+        },
+    })
+
+    if (error) {
+        console.error(`${provider} OAuth error:`, error.message)
+        redirect(`/login?error=${encodeURIComponent(error.message)}`)
+    }
+
+    if (data.url) {
+        redirect(data.url)
+    }
 }
 
 export async function logout() {
