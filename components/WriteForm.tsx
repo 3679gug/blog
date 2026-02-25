@@ -12,10 +12,7 @@ interface Category {
     slug: string
 }
 
-interface WriteFormProps {
-    categories: Category[]
-    user: User
-}
+
 
 export default function WriteForm({ categories }: { categories: Category[] }) {
     const router = useRouter()
