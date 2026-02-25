@@ -4,7 +4,6 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { createPost } from '@/app/auth/actions'
 import Editor from './Editor'
-import { User } from '@supabase/supabase-js'
 
 interface Category {
     id: number
