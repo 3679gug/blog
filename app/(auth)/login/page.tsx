@@ -58,12 +58,11 @@ function LoginContent() {
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-[var(--muted)]">이메일 주소</label>
                                 <div className="relative">
-                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)]" />
                                     <input
                                         name="email"
                                         type="email"
-                                        placeholder="you@example.com"
-                                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-[var(--input-text)]"
+                                        placeholder="이메일을 입력하세요"
+                                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-[var(--input-text)]"
                                         required
                                     />
                                 </div>
@@ -72,12 +71,11 @@ function LoginContent() {
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-[var(--muted)]">비밀번호</label>
                                 <div className="relative">
-                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)]" />
                                     <input
                                         name="password"
                                         type="password"
-                                        placeholder="••••••••"
-                                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl py-3 pl-11 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-[var(--input-text)]"
+                                        placeholder="비밀번호를 입력하세요"
+                                        className="w-full bg-[var(--input-bg)] border border-[var(--input-border)] rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-[var(--input-text)]"
                                         required
                                     />
                                 </div>
