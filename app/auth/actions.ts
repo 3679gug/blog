@@ -30,13 +30,14 @@ export async function signup(formData: FormData) {
     const email = formData.get('email') as string
     const password = formData.get('password') as string
 
-    console.log('Attempting signup for:', email)
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || '').replace(/\/$/, '')
+    console.log('Attempting signup for:', email, 'Redirect to:', `${siteUrl}/auth/callback`)
 
     const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+            emailRedirectTo: `${siteUrl}/auth/callback`,
         },
     })
 
@@ -50,10 +51,14 @@ export async function signup(formData: FormData) {
 
 export async function signInWithOAuth(provider: 'google' | 'github') {
     const supabase = await createClient()
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || '').replace(/\/$/, '')
+
+    console.log(`${provider} OAuth Init - Site URL:`, siteUrl)
+
     const { data, error } = await supabase.auth.signInWithOAuth({
         provider,
         options: {
-            redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`,
+            redirectTo: `${siteUrl}/auth/callback`,
         },
     })
 

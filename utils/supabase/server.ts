@@ -8,10 +8,11 @@ export async function createClient() {
     const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
     // Diagnostic logs for Vercel debugging
+    console.log('Supabase Client Init - URL length:', url?.length || 0);
+    console.log('Supabase Client Init - Key length:', key?.length || 0);
+
     if (!url || !key) {
         console.error('Supabase environment variables are MISSING!');
-        console.log('URL exists:', !!url);
-        console.log('Key exists:', !!key);
     }
 
     return createServerClient(
